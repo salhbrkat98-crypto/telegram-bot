@@ -243,3 +243,36 @@ app.add_handler(MessageHandler(filters.ALL, user_message_handler))
 
 print("Bot is running...")
 app.run_polling()
+# ================= تشغيل Flask =================
+
+import os
+from flask import Flask
+from threading import Thread
+
+app_flask = Flask(__name__)
+
+@app_flask.route('/')
+def home():
+    return "Bot is running"
+
+def run():
+    port = int(os.environ.get("PORT", 10000))
+    app_flask.run(host="0.0.0.0", port=port)
+
+def keep_alive():
+    t = Thread(target=run)
+    t.start()
+
+# تشغيل السيرفر أولاً
+keep_alive()
+
+# ================= تشغيل البوت =================
+
+app = ApplicationBuilder().token(TOKEN).build()
+
+app.add_handler(CommandHandler("start", start))
+app.add_handler(CallbackQueryHandler(button_handler))
+app.add_handler(MessageHandler(filters.ALL, user_message_handler))
+
+print("Bot is running...")
+app.run_polling()
