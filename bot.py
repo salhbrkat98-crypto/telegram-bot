@@ -2,7 +2,7 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, MessageHandler, ContextTypes, filters
 from datetime import datetime, timedelta
 
-
+TOKEN = "8549118561:AAE7PbALK4DqqG-3vBJk4zFNu-iw1Uggbq4"
 
 ADMINS = [7686314998, 823428354]
 
